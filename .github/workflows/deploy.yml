@@ -54,7 +54,11 @@ jobs:
         env:
           config: ${{ secrets.KUBE_CONFIG_DATA }}
           kubectl_version: "1.30"
+      - name: configure
+        run: kubectl config set-context --current --namespace=cervejas
       - name: Check restart
         run: kubectl rollout restart deploy imposto-deploy
       - name: Check restart
         run: kubectl rollout status deploy/imposto-deploy
+
+
