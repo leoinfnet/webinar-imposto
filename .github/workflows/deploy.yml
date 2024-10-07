@@ -32,8 +32,6 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-
-
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
@@ -48,20 +46,5 @@ jobs:
 
           push: true
           tags: leogloriainfnet/imposto:latestk8s-linux
-
-      - name: deploy to cluster
-        uses: bwvolleyball/k8s-toolkit@v1.0.0
-        env:
-          config: ${{ secrets.KUBE_CONFIG_DATA }}
-          kubectl_version: "1.30"
-      - name: configure aws eks
-        run: aws eks --region sa-east-1 update-kubeconfig --name webinar
-      - name: Check restart
-      - name: configure
-        run: kubectl config set-context --current --namespace=cervejas
-      - name: Check restart
-        run: kubectl rollout restart deploy imposto-deploy
-      - name: Check restart
-        run: kubectl rollout status deploy/imposto-deploy
 
 
