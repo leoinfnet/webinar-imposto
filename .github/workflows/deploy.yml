@@ -55,4 +55,4 @@ jobs:
           config: ${{ secrets.KUBE_CONFIG_DATA }}
           kubectl_version: "1.30"
       - name: Check kubectl version
-        run: kubectl version
+        run: sudo kubectl version
