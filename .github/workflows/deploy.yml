@@ -1,0 +1,55 @@
+name: Deploy to HOMOLOG
+on:
+  push:
+    branches:
+      - prod
+jobs:
+  deploy:
+    env:
+    runs-on: self-hosted
+    steps:
+      - name: git-checkout
+        uses: actions/checkout@v4
+        with:
+          ref: 'prod'
+
+      - name: maven-setup
+        uses: stCarolas/setup-maven@v5
+        with:
+          maven-version: 3.9.5
+      - name: Setup JAVA
+        uses: actions/setup-java@v4
+        with:
+          java-version: 17
+          distribution: corretto
+      - name: CLEAN
+        run: mvn clean
+      - name: PACKAGE
+        run: mvn package
+      - name: COPY JAR
+        run: |
+          rm -f docker/app.jar
+          cp ./target/cervejaria-acme-0.0.1-SNAPSHOT.jar ./docker/app.jar
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+#      - name: Login to Docker Hub
+#        uses: docker/login-action@v3
+#        with:
+#          username:  'leogloriainfnet'
+#          password: ${{secrets.DOCKERTOKEN}}
+
+#      - name: Buld-and-push
+#        uses: docker/build-push-action@v6
+#        with:
+#          context: ./docker
+#          platforms: linux/amd64,linux/arm64
+#          push: true
+#          tags: leogloriainfnet/cervejaria-acme:linux-latest
+
+
+
