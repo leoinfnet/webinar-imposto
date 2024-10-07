@@ -23,6 +23,6 @@ public class ImpostoController {
     public ResponseEntity calcularImposto(@RequestBody PedidoPayload pedidoPayload){
         log.info("Calculando imposto payload: {}", pedidoPayload);
         BigDecimal impostoTotal = impostoService.calcularImpostoTotal(pedidoPayload);
-        return ResponseEntity.ok(Map.of("totalImposto", impostoTotal, "version","1.1"));
+        return ResponseEntity.ok(Map.of("totalImposto", impostoTotal, "version","1.2"));
     }
 }
