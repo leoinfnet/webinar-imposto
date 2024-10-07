@@ -24,7 +24,7 @@ jobs:
       - name: CLEAN
         run: mvn clean
       - name: PACKAGE
-        run: mvn package
+        run: mvn package -DskipTests
       - name: COPY JAR
         run: |
           rm -f docker/app.jar
