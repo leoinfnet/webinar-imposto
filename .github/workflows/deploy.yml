@@ -55,7 +55,7 @@ jobs:
           KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
           KUBECTL_VERSION: "1.31"
         with:
-          args: rollout restart deploy/imposto-deploy
+          args: "'rollout restart deploy/imposto-deploy'"
       - name: verify deployment
         uses: ghostzero/kubectl@v1
         env:
