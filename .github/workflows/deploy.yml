@@ -25,10 +25,6 @@ jobs:
         run: mvn clean
       - name: PACKAGE
         run: mvn package -DskipTests
-      - name: COPY JAR
-        run: |
-          rm -f docker/app.jar
-          cp ./target/cervejaria-acme-0.0.1-SNAPSHOT.jar ./docker/app.jar
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
