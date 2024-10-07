@@ -54,5 +54,7 @@ jobs:
         env:
           config: ${{ secrets.KUBE_CONFIG_DATA }}
           kubectl_version: "1.30"
-      - name: Check kubectl version
-        run: kubectl version
+      - name: Check restart
+        run: kubectl rollout restart deploy imposto-deploy
+      - name: Check restart
+        run: kubectl rollout status deploy/imposto-deploy
