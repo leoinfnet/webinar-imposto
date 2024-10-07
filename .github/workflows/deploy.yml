@@ -39,3 +39,12 @@ jobs:
         with:
           username:  'leogloriainfnet'
           password: ${{secrets.DOCKER_TOKEN}}
+
+      - name: Buld-and-push
+        uses: docker/build-push-action@v6
+        with:
+          context: ./docker
+          #platforms: linux/amd64,linux/arm64
+
+          push: true
+          tags: leogloriainfnet/imposto:latest-k8s
