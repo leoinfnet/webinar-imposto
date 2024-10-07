@@ -48,3 +48,17 @@ jobs:
 
           push: true
           tags: leogloriainfnet/imposto:latest-k8s
+
+      - name: deploy to cluster
+        uses: ghostzero/kubectl@v1
+        env:
+          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+        with:
+          args: rollout restart deploy/imposto-deploy
+      - name: verify deployment
+        uses: ghostzero/kubectl@v1
+        env:
+          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+          KUBECTL_VERSION: "1.15"
+        with:
+          args: '"rollout status deployment/imposto-deploy"'
