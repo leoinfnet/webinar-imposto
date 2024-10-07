@@ -44,10 +44,10 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: ./docker
-          #platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64,linux/arm64
 
           push: true
-          tags: leogloriainfnet/imposto:latest-k8s
+          tags: leogloriainfnet/imposto:latestk8s-linux
 
       - name: deploy to cluster
         uses: ghostzero/kubectl@v1
