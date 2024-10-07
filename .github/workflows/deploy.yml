@@ -54,6 +54,9 @@ jobs:
         env:
           config: ${{ secrets.KUBE_CONFIG_DATA }}
           kubectl_version: "1.30"
+      - name: configure aws eks
+        run: aws eks --region sa-east-1 update-kubeconfig --name webinar
+      - name: Check restart
       - name: configure
         run: kubectl config set-context --current --namespace=cervejas
       - name: Check restart
