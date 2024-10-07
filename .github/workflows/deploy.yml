@@ -50,16 +50,9 @@ jobs:
           tags: leogloriainfnet/imposto:latestk8s-linux
 
       - name: deploy to cluster
-        uses: ghostzero/kubectl@v1
+        uses: bwvolleyball/k8s-toolkit@v1.0.0
         env:
-          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-          KUBECTL_VERSION: "1.31"
-        with:
-          args: "'rollout restart deploy/imposto-deploy'"
-      - name: verify deployment
-        uses: ghostzero/kubectl@v1
-        env:
-          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-          KUBECTL_VERSION: "1.31"
-        with:
-          args: '"rollout status deployment/imposto-deploy"'
+          config: ${{ secrets.KUBE_CONFIG_DATA }}
+          kubectl_version: "1.30"
+      - name: Check kubectl version
+        run: kubectl version
